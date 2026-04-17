@@ -1,1 +1,333 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiori Ohama | Personal Website</title>
+  <meta name="description" content="A personal website featuring biography, academic projects, and personal interests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fffafc;
+      --bg2:#fff3f8;
+      --bg3:#fdf7ff;
+      --card:rgba(255,255,255,0.72);
+      --text:#2f2431;
+      --muted:#7c6a76;
+      --primary:#d46aa0;
+      --primary-dark:#b84f84;
+      --line:rgba(212,106,160,0.18);
+      --shadow:0 18px 45px rgba(180, 98, 139, 0.12);
+      --shadow-soft:0 10px 28px rgba(180, 98, 139, 0.08);
+      --radius:26px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Inter', Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(247,215,231,0.95), transparent 26%),
+        radial-gradient(circle at 100% 10%, rgba(234,220,248,0.9), transparent 25%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 55%, var(--bg3) 100%);
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.22) 1px, transparent 1px);
+      background-size:32px 32px;
+      opacity:0.18;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,250,252,0.72);
+      backdrop-filter: blur(16px);
+      border-bottom:1px solid rgba(212,106,160,0.12);
+      box-shadow:0 8px 22px rgba(180, 98, 139, 0.05);
+    }
+    .nav-inner{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:0.01em;
+      font-size:1.05rem;
+    }
+    .links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+    .links a{
+      padding:10px 14px;
+      border-radius:999px;
+      transition:0.25s ease;
+    }
+    .links a:hover{
+      color:var(--primary-dark);
+      background:rgba(255,255,255,0.7);
+    }
+    .hero{
+      padding:92px 0 40px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+      align-items:center;
+      text-align:center;
+    }
+    .tag{
+      display:inline-block;
+      padding:9px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(212,106,160,0.18);
+      color:var(--primary-dark);
+      font-weight:600;
+      font-size:0.9rem;
+      margin-bottom:18px;
+      box-shadow:var(--shadow-soft);
+    }
+    h1{
+      margin:0 0 8px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(3rem, 6vw, 5.2rem);
+      line-height:0.98;
+      letter-spacing:-0.03em;
+      font-weight:700;
+    }
+    section{
+      padding:34px 0;
+    }
+    .section-head{
+      margin-bottom:18px;
+    }
+    .section-head h2{
+      margin:0 0 8px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(2rem, 4vw, 3rem);
+      font-weight:600;
+      letter-spacing:-0.02em;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      max-width:760px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,0.55);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+    .card-pad{
+      padding:28px;
+    }
+    .bio-list{
+      margin:0;
+      padding-left:22px;
+      color:var(--muted);
+      line-height:1.95;
+    }
+    .bio-list li{
+      margin-bottom:10px;
+    }
+    .highlight{
+      color:var(--primary-dark);
+      font-weight:700;
+    }
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
+    }
+    .photo-frame{
+      text-align:center;
+    }
+    .photo-frame img{
+      width:100%;
+      max-width:420px;
+      margin:0 auto;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+    .contact h3{
+      margin:0 0 12px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:1.8rem;
+      font-weight:600;
+    }
+    .contact p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-top:0;
+    }
+    .contact-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 20px;
+      border-radius:999px;
+      font-weight:600;
+      border:1px solid transparent;
+      transition:0.25s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:white;
+      box-shadow:var(--shadow-soft);
+    }
+    .btn-secondary{
+      border-color:rgba(212,106,160,0.18);
+      background:rgba(255,255,255,0.68);
+      color:var(--text);
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+    .footer{
+      padding:36px 0 54px;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+    .footer-line{
+      border-top:1px solid rgba(212,106,160,0.16);
+      padding-top:20px;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    @media (max-width: 920px){
+      .split{
+        grid-template-columns:1fr;
+      }
+      .nav-inner{
+        justify-content:center;
+      }
+      .links{
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Shiori Ohama</div>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="tag">Personal Website</div>
+        <h1>Hello, I’m Shiori.</h1>
+      </div>
+    </div>
+  </header>
+  <section id="biography">
+    <div class="container">
+      <div class="section-head">
+        <h2>My Biography</h2>
+      </div>
+      <div class="card card-pad">
+        <p style="color:var(--muted);line-height:1.9;margin-top:0;">
+          My name is <span class="highlight">Shiori Ohama</span>. I'm from Japan and have been living in Texas for 10 years. I am going to receive a Bachelor of Science in Business Analytics from the University of Texas at Arlington and pursue a Master's program in Accounting and Analytics at the University of Texas at Dallas in Fall 2026.
+        </p>
+        <h3 style="margin-top:18px; font-family:'Cormorant Garamond', serif; font-size:1.4rem; font-weight:500;">Academic Projects</h3>
+        <ul class="bio-list" style="margin-top:12px;">
+          <li><strong>Building an ESG time-series forecasting system</strong></li>
+          <li><strong>Identifying bank fraud through machine learning</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id="ballet">
+    <div class="container">
+      <div class="section-head">
+        <h2>My Passion: Ballet</h2>
+        <p>I’m also passionate about ballet. Having trained for over 10 years, it taught me discipline, consistency, and accountability. These experiences have shaped my work ethic and directly influence how I approach challenges in professional settings</p>
+      </div>
+    </div>
+  </section>
+  <section id="kpop">
+    <div class="container">
+      <div class="split">
+        <div>
+          <div class="section-head">
+            <h2>My Hobby: K-pop</h2>
+            <p>Listening to K-pop is my favorite thing to do. And my favorite K-pop group is TWICE. I’ve been a fan of TWICE since their debut, and what I really admire is how they’ve grown over time. They started with a bright, cute concept, but evolved into a more mature and versatile group while still keeping their signature energy.</p>
+          </div>
+        </div>
+        <div class="photo-frame">
+          <img src="twice_photo.jpg" alt="TWICE group photo">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+      </div>
+      <div class="card card-pad contact">
+        
+        <p>
+          Thank you for visiting my website. Feel free to contact me!
+        </p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:shori0655hellokitty@gmail.com">Email Me</a>
+          
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container footer-line">
+      <div>© 2026 Shiori Ohama. All rights reserved.</div>
+      <div>Made with HTML and CSS</div>
+    </div>
+  </footer>
+</body>
+</html>
